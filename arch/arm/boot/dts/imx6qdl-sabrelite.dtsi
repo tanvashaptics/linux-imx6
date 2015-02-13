@@ -278,8 +278,8 @@
 };
 
 &hdmi_core {
-	ipu_id = <0>;
-	disp_id = <1>;
+	ipu_id = <1>;
+	disp_id = <0>;
 	status = "okay";
 };
 
@@ -556,7 +556,7 @@
 	status = "okay";
 
 	lvds-channel@0 {
-		crtc = "ipu2-di0";
+		crtc = "ipu1-di1";
 		fsl,data-mapping = "spwg";
 		fsl,data-width = <18>;
 		status = "okay";
