@@ -79,7 +79,7 @@ all: $(BOOT_DIR)
 	done)
 	@(rm -rf $(BOOT_DIR)/*.dtb)
 	@(if [ -d $(BUILD_DIR)/arch/arm/boot/dts ] ; then \
-		(cd $(BUILD_DIR)/arch/arm/boot/dts && cp -t $(BOOT_DIR) *.dtb) ; \
+		(cd $(BUILD_DIR)/arch/arm/boot/dts && cp -t $(BOOT_DIR) imx6*.dtb) ; \
 	fi)
 	@(cd $(BUILD_DIR) && \
 	  KR=`cat $(BUILD_DIR)/include/config/kernel.release` && \
