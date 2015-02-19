@@ -14,9 +14,15 @@
 
 / {
 	aliases {
-		mxcfb0 = &mxcfb1;
-		mxcfb1 = &mxcfb2;
-		mxcfb2 = &mxcfb3;
+                mxcfb0 = &hdmi_display;
+                mxcfb1 = &lvds_display;
+                mxcfb2 = &lcd_display;
+		hdmi_display = &hdmi_display;
+		lvds_display = &lvds_display;
+		lcd_display = &lcd_display;
+		hannstar = &hannstar ;
+		lg1280x800 = &lg1280x800;
+		okaya1024x600 = &okaya1024x600;
 	};
 
 	memory {
@@ -128,7 +134,18 @@
 		hdmi-controller = <&hdmi_audio>;
 	};
 
-	mxcfb1: fb@0 {
+	hdmi_display: fb@0 {
+		compatible = "fsl,mxc_sdc_fb";
+		disp_dev = "hdmi";
+		interface_pix_fmt = "RGB24";
+		mode_str ="1920x1080M@60";
+		default_bpp = <24>;
+		int_clk = <0>;
+		late_init = <0>;
+		status = "disabled";
+	};
+
+	lvds_display: fb@1 {
 		compatible = "fsl,mxc_sdc_fb";
 		disp_dev = "ldb";
 		interface_pix_fmt = "RGB666";
@@ -138,18 +155,7 @@
 		status = "disabled";
 	};
 
-	mxcfb2: fb@1 {
-		compatible = "fsl,mxc_sdc_fb";
-		disp_dev = "hdmi";
-		interface_pix_fmt = "RGB24";
-		mode_str ="1920x1080M@60";
-		default_bpp = <16>;
-		int_clk = <0>;
-		late_init = <1>;
-		status = "disabled";
-	};
-
-	mxcfb3: fb@2 {
+	lcd_display: fb@2 {
 		compatible = "fsl,mxc_sdc_fb";
 		disp_dev = "lcd";
 		interface_pix_fmt = "RGB666";
@@ -626,8 +632,8 @@
 		primary;
 
 		display-timings {
-			native-mode = <&timing0>;
-			timing0: lp101wx1 {
+			native-mode = <&lg1280x800>;
+			lg1280x800: lp101wx1 {
 				clock-frequency = <72000000>;
 				hactive = <1280>;
 				vactive = <800>;
@@ -637,6 +643,28 @@
 				vfront-porch = <2>;
 				hsync-len = <32>;
 				vsync-len = <6>;
+			};
+			okaya1024x600: okaya7x0WP {
+				clock-frequency = <52000000>;
+				hactive = <1024>;
+				vactive = <600>;
+				hback-porch = <220>;
+				hfront-porch = <40>;
+				vback-porch = <7>;
+				vfront-porch = <21>;
+				hsync-len = <60>;
+				vsync-len = <10>;
+			};
+			hannstar: hsd100pxn1 {
+				clock-frequency = <65000000>;
+				hactive = <1024>;
+				vactive = <768>;
+				hback-porch = <220>;
+				hfront-porch = <40>;
+				vback-porch = <21>;
+				vfront-porch = <7>;
+				hsync-len = <60>;
+				vsync-len = <10>;
 			};
 		};
 	};
