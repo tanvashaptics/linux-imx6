@@ -15,21 +15,25 @@
 
 #include <dt-bindings/interrupt-controller/irq.h>
 #include "imx6dl.dtsi"
-#include "imx6qdl-nitrogen6_vm-magstripe.dtsi"
+#include "imx6qdl-nitrogen6_vm.dtsi"
 
 / {
-	model = "Freescale i.MX6 Solo Nitrogen6_vm Board";
+	model = "Freescale i.MX6 Solo Nitrogen6_vm Board with Magstripe reader";
 	compatible = "fsl,imx6dl-nitrogen6_vm", "fsl,imx6dl", "fsl,imx6q";
 };
 
-&mxcfb1 {
+&lcd_display {
 	status = "okay";
 };
 
-&mxcfb2 {
+&hdmi_display {
 	status = "okay";
 };
 
-&mxcfb3 {
+&lvds_display {
+	status = "disabled";
+};
+
+&magstripe {
 	status = "okay";
 };
