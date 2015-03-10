@@ -937,6 +937,7 @@ static int max77823_otg_get_property(struct power_supply *psy,
 	case POWER_SUPPLY_PROP_ONLINE:
 		max77823_read_reg(charger->i2c, MAX77823_CHG_CNFG_00, &data);
 		val->intval = (0xc400 >> (data & 0x0f)) & 1;
+		break;
 	default:
 		return -EINVAL;
 	}
