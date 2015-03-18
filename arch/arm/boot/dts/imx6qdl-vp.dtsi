@@ -782,7 +782,7 @@
 
 	battery,ovp_uvlo_check_type = <3>; /* SEC_BATTERY_OVP_UVLO_CHGPOLLING */
 
-	battery,thermal_source = <2>; /* SEC_BATTERY_THERMAL_SOURCE_ADC */
+	battery,thermal_source = <0>; /* SEC_BATTERY_THERMAL_SOURCE_FG */
 
 	battery,temp_check_type = <2>; /* _BATTERY_TEMP_CHECK_TEMP */
 	battery,temp_check_count = <1>;
