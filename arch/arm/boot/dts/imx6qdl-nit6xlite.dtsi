@@ -123,7 +123,8 @@
 	lcd_display: fb@2 {
 		compatible = "fsl,mxc_sdc_fb";
 		disp_dev = "lcd";
-		interface_pix_fmt = "RGB666";
+		interface_pix_fmt = "RGB24";
+		mode_str = "okaya_480x272";
 		default_bpp = <16>;
 		int_clk = <0>;
 		late_init = <0>;
@@ -134,7 +135,7 @@
 		compatible = "fsl,lcd";
 		ipu_id = <0>;
 		disp_id = <0>;
-		default_ifmt = "RGB666";
+		default_ifmt = "RGB24";
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_ipu1_di0>;
 		status = "okay";
