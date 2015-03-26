@@ -31,5 +31,5 @@
 };
 
 &lvds_display {
-	status = "disabled";
+	status = "okay";
 };
