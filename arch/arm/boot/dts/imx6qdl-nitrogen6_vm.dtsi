@@ -256,6 +256,8 @@
 			MX6QDL_PAD_GPIO_2__GPIO1_IO02		0x1b0b0		/* ar1021  irq */
 #define PCAP_TOUCH_IRQ	<&gpio1 9 IRQ_TYPE_LEVEL_LOW>
 			MX6QDL_PAD_GPIO_9__GPIO1_IO09		0x1b0b0		/* J40 pin 4 - I2C3 and J57 pin 4 */
+#define PCAP_RESETN	<&gpio1 21 GPIO_ACTIVE_LOW>
+			MX6QDL_PAD_SD1_DAT3__GPIO1_IO21		0x1b0b0		/* J40 pin 3 */
 		>;
 	};
 
@@ -310,12 +312,6 @@
 		fsl,pins = <
 #define GP_LED_1			<&gpio1 7 GPIO_ACTIVE_LOW>
 			MX6QDL_PAD_GPIO_7__GPIO1_IO07		0x1b0b0		/* Not used, keeps group from being empty */
-		>;
-	};
-
-	pinctrl_pwm1: pwm1grp {
-		fsl,pins = <
-			MX6QDL_PAD_SD1_DAT3__PWM1_OUT		0x030b0
 		>;
 	};
 
@@ -673,13 +669,6 @@
 };
 
 &pcie {
-	status = "okay";
-};
-
-/* I2c3(J40) pwm */
-&pwm1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_pwm1>;
 	status = "okay";
 };
 
