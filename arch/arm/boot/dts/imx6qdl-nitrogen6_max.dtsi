@@ -17,7 +17,7 @@
                 mxcfb0 = &hdmi_display;
                 mxcfb1 = &lvds_display;
                 mxcfb2 = &lcd_display;
-                mxcfb3 = &lvds_display2;
+                mxcfb3 = &lvds_display_2;
 		hdmi_display = &hdmi_display;
 		lvds_display = &lvds_display;
 		lcd_display = &lcd_display;
@@ -25,6 +25,12 @@
 		lg1280x800 = &lg1280x800;
 		lvds1080p = &lvds1080p;
 		okaya1024x600 = &okaya1024x600;
+
+		lvds_display_2 = &lvds_display_2;
+		hannstar_2 = &hannstar_2 ;
+		lg1280x800_2 = &lg1280x800_2;
+		okaya1024x600_2 = &okaya1024x600_2;
+		ldb = &ldb;
 	};
 
 	memory {
@@ -167,7 +173,7 @@
 		status = "disabled";
 	};
 
-	lvds_display2: fb@3 {
+	lvds_display_2: fb@3 {
 		compatible = "fsl,mxc_sdc_fb";
 		disp_dev = "ldb";
 		interface_pix_fmt = "RGB666";
@@ -759,6 +765,49 @@
 				vsync-len = <10>;
 			};
 			hannstar: hsd100pxn1 {
+				clock-frequency = <65000000>;
+				hactive = <1024>;
+				vactive = <768>;
+				hback-porch = <220>;
+				hfront-porch = <40>;
+				vback-porch = <21>;
+				vfront-porch = <7>;
+				hsync-len = <60>;
+				vsync-len = <10>;
+			};
+		};
+	};
+
+	lvds-channel@1 {
+		crtc = "ipu1-di0";
+		fsl,data-mapping = "spwg";
+		fsl,data-width = <18>;
+		status = "okay";
+
+		display-timings {
+			lg1280x800_2: lp101wx1_2 {
+				clock-frequency = <72000000>;
+				hactive = <1280>;
+				vactive = <800>;
+				hback-porch = <48>;
+				hfront-porch = <80>;
+				vback-porch = <15>;
+				vfront-porch = <2>;
+				hsync-len = <32>;
+				vsync-len = <6>;
+			};
+			okaya1024x600_2: okaya7x0WP_2 {
+				clock-frequency = <52000000>;
+				hactive = <1024>;
+				vactive = <600>;
+				hback-porch = <220>;
+				hfront-porch = <40>;
+				vback-porch = <7>;
+				vfront-porch = <21>;
+				hsync-len = <60>;
+				vsync-len = <10>;
+			};
+			hannstar_2: hsd100pxn1_2 {
 				clock-frequency = <65000000>;
 				hactive = <1024>;
 				vactive = <768>;
