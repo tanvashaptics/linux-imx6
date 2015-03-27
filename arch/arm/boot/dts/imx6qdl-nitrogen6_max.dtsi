@@ -23,6 +23,7 @@
 		lcd_display = &lcd_display;
 		hannstar = &hannstar ;
 		lg1280x800 = &lg1280x800;
+		lvds1080p = &lvds1080p;
 		okaya1024x600 = &okaya1024x600;
 	};
 
@@ -713,6 +714,7 @@
 
 &ldb {
 	ext_ref = <1>;
+	split-mode = <0>;
 	status = "okay";
 
 	lvds-channel@0 {
@@ -733,6 +735,17 @@
 				vfront-porch = <2>;
 				hsync-len = <32>;
 				vsync-len = <6>;
+			};
+			lvds1080p: lvds1080p {
+				clock-frequency = <148500000>;
+				hactive = <1920>;
+				vactive = <1080>;
+				hback-porch = <148>;
+				hfront-porch = <88>;
+				vback-porch = <36>;
+				vfront-porch = <4>;
+				hsync-len = <44>;
+				vsync-len = <5>;
 			};
 			okaya1024x600: okaya7x0WP {
 				clock-frequency = <52000000>;
