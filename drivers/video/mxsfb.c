@@ -621,6 +621,8 @@ static void mxsfb_disable_controller(struct fb_info *fb_info)
 	reg = readl(host->base + LCDC_VDCTRL4);
 	writel(reg & ~VDCTRL4_SYNC_SIGNALS_ON, host->base + LCDC_VDCTRL4);
 
+	clk_disable_pix(host);
+
 	pm_runtime_put_sync_suspend(&host->pdev->dev);
 
 	host->enabled = 0;
@@ -926,10 +928,9 @@ static int mxsfb_blank(int blank, struct fb_info *fb_info)
 	case FB_BLANK_UNBLANK:
 		fb_info->var.activate = (fb_info->var.activate & ~FB_ACTIVATE_MASK) |
 				FB_ACTIVATE_NOW | FB_ACTIVATE_FORCE;
-		if (!host->enabled) {
-			mxsfb_set_par(&host->fb_info);
+		if (!host->enabled)
 			mxsfb_enable_controller(fb_info);
-		}
+		mxsfb_set_par(&host->fb_info);
 		break;
 	}
 	return 0;
