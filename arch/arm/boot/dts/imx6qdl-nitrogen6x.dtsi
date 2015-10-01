@@ -766,7 +766,7 @@
 	};
 
 	ov5640_mipi: ov5640_mipi@3e {
-		compatible = "ovti,ov5640_mipi";
+		compatible = "ovti,ov564x_mipi";
 		reg = <0x3e>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_i2c2_ov5640_mipi>;
