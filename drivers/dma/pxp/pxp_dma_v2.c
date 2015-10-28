@@ -1324,6 +1324,7 @@ static irqreturn_t pxp_irq(int irq, void *dev_id)
 
 	if (list_empty(&head)) {
 		pxp->pxp_ongoing = 0;
+		pxp->lut_state = 0;
 		spin_unlock_irqrestore(&pxp->lock, flags);
 		return IRQ_NONE;
 	}
@@ -1354,6 +1355,7 @@ static irqreturn_t pxp_irq(int irq, void *dev_id)
 
 	complete(&pxp->complete);
 	pxp->pxp_ongoing = 0;
+	pxp->lut_state = 0;
 	mod_timer(&pxp->clk_timer, jiffies + msecs_to_jiffies(timeout_in_ms));
 
 	spin_unlock_irqrestore(&pxp->lock, flags);
