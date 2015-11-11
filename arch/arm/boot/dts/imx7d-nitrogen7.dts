@@ -611,8 +611,8 @@
 
 		pinctrl_usbotg2: usbotg2grp {
 			fsl,pins = <
-				MX7D_PAD_UART3_RTS_B__USB_OTG2_OC	0x6d
-				MX7D_PAD_UART3_CTS_B__USB_OTG2_PWR	0x6d
+				MX7D_PAD_UART3_RTS_B__USB_OTG2_OC	0x7d
+				MX7D_PAD_UART3_CTS_B__GPIO4_IO7		0x14
 			>;
 		};
 
@@ -779,8 +779,8 @@
 
 		pinctrl_usbotg1: usbotg1grp {
 			fsl,pins = <
-				MX7D_PAD_GPIO1_IO04__USB_OTG1_OC	0x6d
-				MX7D_PAD_GPIO1_IO05__USB_OTG1_PWR	0x6d
+				MX7D_PAD_GPIO1_IO04__USB_OTG1_OC	0x7d
+				MX7D_PAD_GPIO1_IO05__GPIO1_IO5		0x14
 			>;
 		};
 
