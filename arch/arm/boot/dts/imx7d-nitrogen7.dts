@@ -173,7 +173,7 @@
 &fec1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_enet1>;
-	pinctrl-assert-gpios = <&gpio6 10 GPIO_ACTIVE_HIGH>;
+	phy-reset-gpios = <&gpio6 10 GPIO_ACTIVE_HIGH>;
 	assigned-clocks = <&clks IMX7D_ENET1_TIME_ROOT_SRC>,
 			  <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
@@ -183,20 +183,14 @@
 	fsl,magic-packet;
 	status = "okay";
 
-	#address-cells = <0>;
-	#size-cells = <1>;
-	phy_int {
-		reg = <0x6>;
-		interrupts-extended = <&gpio1 3 IRQ_TYPE_LEVEL_LOW>;
-	};
-
 	mdio {
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		ethphy0: ethernet-phy@0 {
+		ethphy0: ethernet-phy@4 {
 			compatible = "ethernet-phy-ieee802.3-c22";
-			reg = <0>;
+			reg = <4>;
+			interrupts-extended = <&gpio1 3 IRQ_TYPE_EDGE_FALLING>;
 		};
 	};
 };
@@ -435,12 +429,12 @@
 				MX7D_PAD_ENET1_RGMII_TD3__ENET1_RGMII_TD3	0x71
 				MX7D_PAD_ENET1_RGMII_TX_CTL__ENET1_RGMII_TX_CTL	0x71
 				MX7D_PAD_ENET1_RGMII_RXC__ENET1_RGMII_RXC	0x71
-				MX7D_PAD_ENET1_RGMII_RD0__ENET1_RGMII_RD0	0x71
-				MX7D_PAD_ENET1_RGMII_RD1__ENET1_RGMII_RD1	0x71
-				MX7D_PAD_ENET1_RGMII_RD2__ENET1_RGMII_RD2	0x71
+				MX7D_PAD_ENET1_RGMII_RD0__ENET1_RGMII_RD0	0x11
+				MX7D_PAD_ENET1_RGMII_RD1__ENET1_RGMII_RD1	0x11
+				MX7D_PAD_ENET1_RGMII_RD2__ENET1_RGMII_RD2	0x11
 				MX7D_PAD_ENET1_RGMII_RD3__ENET1_RGMII_RD3	0x71
-				MX7D_PAD_ENET1_RGMII_RX_CTL__ENET1_RGMII_RX_CTL	0x71
-				MX7D_PAD_SD3_STROBE__GPIO6_IO10			0x7d /* Reset */
+				MX7D_PAD_ENET1_RGMII_RX_CTL__ENET1_RGMII_RX_CTL	0x11
+				MX7D_PAD_SD3_STROBE__GPIO6_IO10			0x79 /* Reset */
 			>;
 		};
 
