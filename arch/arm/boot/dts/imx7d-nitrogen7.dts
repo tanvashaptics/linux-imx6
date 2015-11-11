@@ -124,9 +124,12 @@
 
 		reg_wlan: regulator@7 {
 			compatible = "regulator-fixed";
-			regulator-min-microvolt = <5000000>;
-			regulator-max-microvolt = <5000000>;
+			regulator-min-microvolt = <3300000>;
+			regulator-max-microvolt = <3300000>;
+			clocks = <&clks IMX7D_CLKO1_ROOT_SRC>;
+			clock-names = "slow";
 			regulator-name = "reg_wlan";
+			startup-delay-us = <70000>;
 			gpio = <&gpio4 21 GPIO_ACTIVE_HIGH>;
 			enable-active-high;
 		};
