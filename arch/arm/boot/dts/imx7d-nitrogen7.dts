@@ -347,8 +347,8 @@
 		reg = <0x48>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_i2c3_tsc2004>;
-		interrupts-extended = <&gpio4 20 IRQ_TYPE_EDGE_FALLING>;
-		wakeup-gpios = <&gpio5 10 GPIO_ACTIVE_LOW>;
+		interrupts-extended = <&gpio3 4 IRQ_TYPE_EDGE_FALLING>;
+		wakeup-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
 	};
 };
 
@@ -478,6 +478,7 @@
 
 		pinctrl_i2c3_tsc2004: i2c3tsc2004grp {
 			fsl,pins = <
+				MX7D_PAD_LCD_RESET__GPIO3_IO4	0x79
 				MX7D_PAD_SD2_WP__GPIO5_IO10	0x7d
 			>;
 		};
@@ -564,7 +565,6 @@
 				MX7D_PAD_LCD_ENABLE__LCD_ENABLE		0x79
 				MX7D_PAD_LCD_VSYNC__LCD_VSYNC		0x79
 				MX7D_PAD_LCD_HSYNC__LCD_HSYNC		0x79
-				MX7D_PAD_LCD_RESET__LCD_RESET		0x79
 			>;
 		};
 
