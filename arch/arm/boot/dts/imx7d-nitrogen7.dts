@@ -173,6 +173,40 @@
 	status = "okay";
 };
 
+&ecspi1 {
+	fsl,spi-num-chipselects = <1>;
+	cs-gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_flash>;
+	status = "okay";
+
+	flash: m25p80@0 {
+		compatible = "sst,sst25vf016b";
+		spi-max-frequency = <20000000>;
+		reg = <0>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		partition@0 {
+			label = "U-Boot";
+			reg = <0x0 0xC0000>;
+			read-only;
+		};
+		partition@C0000 {
+			label = "U-Boot Env";
+			reg = <0xC0000 0x2000>;
+			read-only;
+		};
+		partition@C2000 {
+			label = "Kernel";
+			reg = <0xC2000 0x11e000>;
+		};
+		partition@1E0000 {
+			label = "M4";
+			reg = <0x1E0000 0x20000>;
+		};
+	};
+};
+
 &fec1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_enet1>;
@@ -425,6 +459,7 @@
 			fsl,pins = <
 				MX7D_PAD_GPIO1_IO10__ENET1_MDIO			0x3
 				MX7D_PAD_GPIO1_IO11__ENET1_MDC			0x3
+				MX7D_PAD_GPIO1_IO12__CCM_ENET_REF_CLK1		0x3
 				MX7D_PAD_ENET1_RGMII_TXC__ENET1_RGMII_TXC	0x71
 				MX7D_PAD_ENET1_RGMII_TD0__ENET1_RGMII_TD0	0x71
 				MX7D_PAD_ENET1_RGMII_TD1__ENET1_RGMII_TD1	0x71
@@ -438,6 +473,17 @@
 				MX7D_PAD_ENET1_RGMII_RD3__ENET1_RGMII_RD3	0x71
 				MX7D_PAD_ENET1_RGMII_RX_CTL__ENET1_RGMII_RX_CTL	0x11
 				MX7D_PAD_SD3_STROBE__GPIO6_IO10			0x79 /* Reset */
+			>;
+		};
+
+		pinctrl_flash: flashgrp {
+			fsl,pins = <
+				MX7D_PAD_EPDC_DATA00__QSPI_A_DATA0	0x71
+				MX7D_PAD_EPDC_DATA01__QSPI_A_DATA1	0x71
+				MX7D_PAD_EPDC_DATA02__GPIO2_IO2		0x7d
+				MX7D_PAD_EPDC_DATA03__GPIO2_IO3		0x7d
+				MX7D_PAD_EPDC_DATA05__QSPI_A_SCLK	0x71
+				MX7D_PAD_EPDC_DATA06__GPIO2_IO6		0x71
 			>;
 		};
 
@@ -577,7 +623,7 @@
 
 		pinctrl_pwm2: pwm2grp {
 			fsl,pins = <
-				MX7D_PAD_GPIO1_IO09__PWM2_OUT	0x110b0
+				MX7D_PAD_GPIO1_IO09__PWM2_OUT		0x7d
 			>;
 		};
 
@@ -742,14 +788,6 @@
 				MX7D_PAD_ENET1_CRS__SAI1_TX_SYNC	0x1f
 				MX7D_PAD_ENET1_COL__SAI1_TX_DATA0	0x30
 				MX7D_PAD_ENET1_TX_CLK__SAI1_RX_DATA0	0x1f
-			>;
-		};
-
-		pinctrl_spi1: spi1grp {
-			fsl,pins = <
-				MX7D_PAD_GPIO1_IO09__GPIO1_IO9	0x59
-				MX7D_PAD_GPIO1_IO12__GPIO1_IO12	0x59
-				MX7D_PAD_GPIO1_IO13__GPIO1_IO13	0x59
 			>;
 		};
 	};
