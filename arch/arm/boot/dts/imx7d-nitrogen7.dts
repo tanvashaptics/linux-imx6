@@ -13,7 +13,7 @@
 
 / {
 	model = "Boundary Devices i.MX7 Nitrogen7 Board";
-	compatible = "boundary,imx7d-nitrogen7", "boundary,imx7d";
+	compatible = "boundary,imx7d-nitrogen7", "fsl,imx7d";
 
 	memory {
 		reg = <0x80000000 0x40000000>;
@@ -800,7 +800,7 @@
 	pinctrl-0 = <&pinctrl_pcie>;
 	reset-gpio = <&gpio6 16 GPIO_ACTIVE_LOW>;
 	disable-gpio = <&gpio6 17 GPIO_ACTIVE_LOW>;
-	/* status = "okay"; */
+	status = "okay";
 };
 
 &pwm1 {
