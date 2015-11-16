@@ -15,6 +15,11 @@
 	model = "Boundary Devices i.MX7 Nitrogen7 Board";
 	compatible = "boundary,imx7d-nitrogen7", "fsl,imx7d";
 
+	aliases {
+		fb_lcd = &lcdif;
+		t_lcd = &t_lcd;
+	};
+
 	memory {
 		reg = <0x80000000 0x40000000>;
 	};
@@ -416,21 +421,20 @@
 		display-timings {
 			native-mode = <&t_lcd>;
 			t_lcd: t_lcd_default {
-			/* default to Okaya display */
-			clock-frequency = <30000000>;
-			hactive = <800>;
-			vactive = <480>;
-			hfront-porch = <40>;
-			hback-porch = <40>;
-			hsync-len = <48>;
-			vback-porch = <29>;
-			vfront-porch = <13>;
-			vsync-len = <3>;
-
-			hsync-active = <0>;
-			vsync-active = <0>;
-			de-active = <1>;
-			pixelclk-active = <0>;
+				/* default to Okaya display */
+				clock-frequency = <30000000>;
+				hactive = <800>;
+				vactive = <480>;
+				hfront-porch = <40>;
+				hback-porch = <40>;
+				hsync-len = <48>;
+				vback-porch = <29>;
+				vfront-porch = <13>;
+				vsync-len = <3>;
+				hsync-active = <0>;
+				vsync-active = <0>;
+				de-active = <1>;
+				pixelclk-active = <0>;
 			};
 		};
 	};
