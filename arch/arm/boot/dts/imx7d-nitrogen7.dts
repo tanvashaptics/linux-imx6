@@ -131,7 +131,7 @@
 			compatible = "regulator-fixed";
 			regulator-min-microvolt = <3300000>;
 			regulator-max-microvolt = <3300000>;
-			clocks = <&clks IMX7D_CLKO1_ROOT_SRC>;
+			clocks = <&clks IMX7D_CLKO1_ROOT_DIV>;
 			clock-names = "slow";
 			regulator-name = "reg_wlan";
 			startup-delay-us = <70000>;
