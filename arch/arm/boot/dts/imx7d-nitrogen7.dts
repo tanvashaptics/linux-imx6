@@ -178,6 +178,17 @@
 	status = "okay";
 };
 
+&csi1 {
+	csi-mux-mipi = <&gpr 0x14 4>;
+	status = "okay";
+
+	port {
+		csi_ep: endpoint {
+			remote-endpoint = <&csi_mipi_ep>;
+		};
+	};
+};
+
 &ecspi1 {
 	fsl,spi-num-chipselects = <1>;
 	cs-gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
@@ -358,20 +369,25 @@
 };
 
 &i2c2a {
-	ov5640_mipi: ov5640_mipi@3e {
-		compatible = "ovti,ov564x_mipi";
-		reg = <0x3e>;
-		clocks = <&clks IMX7D_PWM3_ROOT_CLK>;
+	ov5640_mipi: ov5640_mipi@3c {
+		compatible = "ovti,ov5640_mipi";
+		reg = <0x3c>;
+		clocks = <&clks IMX7D_PWM2_ROOT_CLK>;
 		clock-names = "csi_mclk";
 		DOVDD-supply = <&reg_vref_1v8>;
 		AVDD-supply = <&reg_vref_2v5>;
 		DVDD-supply = <&reg_vref_3v3>;
 		pwn-gpios = <&gpio1 13 GPIO_ACTIVE_HIGH>;
 		rst-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
-		csi_id = <1>;
+		csi_id = <0>;
 		mclk = <22000000>;
 		mclk_source = <0>;
 		pwms = <&pwm2 0 45>;
+		port {
+			ov5640_mipi_ep: endpoint {
+				remote-endpoint = <&mipi_sensor_ep>;
+			};
+		};
 	};
 };
 
@@ -833,6 +849,23 @@
 			fsl,pins = <
 				MX7D_PAD_GPIO1_IO00__WDOD1_WDOG_B	0x75
 			>;
+		};
+	};
+};
+
+&mipi_csi {
+	clock-frequency = <22000000>;
+	status = "okay";
+	port {
+		mipi_sensor_ep: endpoint1 {
+			remote-endpoint = <&ov5640_mipi_ep>;
+			data-lanes = <2>;
+			csis-hs-settle = <13>;
+			csis-wclk;
+		};
+
+		csi_mipi_ep: endpoint2 {
+			remote-endpoint = <&csi_ep>;
 		};
 	};
 };
