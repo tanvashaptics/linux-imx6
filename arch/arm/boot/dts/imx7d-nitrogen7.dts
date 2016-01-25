@@ -382,7 +382,9 @@
 	ov5640_mipi: ov5640_mipi@3c {
 		compatible = "ovti,ov5640_mipi";
 		reg = <0x3c>;
-		clocks = <&clks IMX7D_PWM2_ROOT_CLK>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_mipi_csi>;
+		clocks = <&clks IMX7D_CLK_DUMMY>;
 		clock-names = "csi_mclk";
 		DOVDD-supply = <&reg_vref_1v8>;
 		AVDD-supply = <&reg_vref_2v5>;
@@ -390,9 +392,9 @@
 		pwn-gpios = <&gpio1 13 GPIO_ACTIVE_HIGH>;
 		rst-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
 		csi_id = <0>;
-		mclk = <22000000>;
+		mclk = <12000000>;
 		mclk_source = <0>;
-		pwms = <&pwm2 0 45>;
+		pwms = <&pwm2 0 83>;
 		port {
 			ov5640_mipi_ep: endpoint {
 				remote-endpoint = <&mipi_sensor_ep>;
@@ -814,13 +816,18 @@
 				MX7D_PAD_GPIO1_IO02__GPIO1_IO2	0x7d /* Slow clock, can't get slow enough */
 				MX7D_PAD_GPIO1_IO03__GPIO1_IO3	0x7d /* ENET INT */
 #endif
-				MX7D_PAD_GPIO1_IO06__GPIO1_IO6	0x7d /* MIPI */
 			>;
 		};
 
 		pinctrl_i2c2mux: i2c2muxgrp {
 			fsl,pins = <
 				MX7D_PAD_GPIO1_IO07__GPIO1_IO7	0x7d
+			>;
+		};
+
+		pinctrl_mipi_csi: mipicsigrp-1 {
+			fsl,pins = <
+				MX7D_PAD_GPIO1_IO06__GPIO1_IO6	0x15 /* MIPI reset */
 			>;
 		};
 
@@ -846,7 +853,7 @@
 };
 
 &mipi_csi {
-	clock-frequency = <22000000>;
+	clock-frequency = <12000000>;
 	status = "okay";
 	port {
 		mipi_sensor_ep: endpoint1 {
