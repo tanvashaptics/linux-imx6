@@ -353,7 +353,6 @@ static int bg_overlay_stop(void *private)
 	int err = 0;
 	int err2 = 0;
 	cam_data *cam = (cam_data *) private;
-	ipu_channel_t chan = (cam->csi == 0) ? CSI_MEM0 : CSI_MEM1;
 
 	if (cam->overlay_active == false)
 		return 0;

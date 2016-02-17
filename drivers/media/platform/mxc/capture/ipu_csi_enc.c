@@ -265,7 +265,6 @@ static int csi_enc_disabling_tasks(void *private)
 	cam_data *cam = (cam_data *) private;
 	int err = 0;
 	int err2 = 0;
-	ipu_channel_t chan = (cam->csi == 0) ? CSI_MEM0 : CSI_MEM1;
 
 	err = ipu_channel_disable(cam->ipu_chan, true);
 

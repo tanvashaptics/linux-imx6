@@ -422,7 +422,6 @@ static int foreground_stop(void *private)
 	int err2 = 0;
 	struct fb_info *fbi = NULL;
 	struct fb_var_screeninfo fbvar;
-	ipu_channel_t chan = (cam->csi == 0) ? CSI_MEM0 : CSI_MEM1;
 
 	if (cam->overlay_active == false)
 		return 0;
