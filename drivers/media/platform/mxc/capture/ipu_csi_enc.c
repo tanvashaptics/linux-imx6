@@ -129,9 +129,9 @@ static int csi_enc_setup(cam_data *cam)
 	if (err)
 		return err;
 
-	err = ipu_channel_request(cam->ipu, CSI_MEM, &params, &cam->ipu_chan);
+	err = ipu_channel_request(cam->ipu, chan, &params, &cam->ipu_chan);
 	if (err) {
-		pr_err("%s:ipu_channel_request %d\n", __func__, err);
+		pr_err("%s: ipu_channel_request %d\n", __func__, err);
 		return err;
 	}
 
