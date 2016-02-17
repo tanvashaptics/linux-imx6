@@ -2151,8 +2151,6 @@ static int OV5640_get_sysclk(void)
 	unsigned div, sclk_rdiv, sysclk;
 	u8 temp;
 
-	int sclk_rdiv_map[] = {1, 2, 4, 8};
-
 	tmp = ov5640_read_reg(0x3034, &temp);
 	if (tmp < 0)
 		return tmp;
