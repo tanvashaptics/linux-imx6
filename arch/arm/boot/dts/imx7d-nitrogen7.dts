@@ -380,7 +380,7 @@
 
 &i2c2a {
 	ov5640_mipi: ov5640_mipi@3c {
-		compatible = "ovti,ov5640_mipi";
+		compatible = "ovti,ov5640_mipisubdev";
 		reg = <0x3c>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_mipi_csi>;
