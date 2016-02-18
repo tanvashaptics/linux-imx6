@@ -31,7 +31,7 @@ config MXC_MIPI_CSI
 	---help---
 	  This is a V4L2 driver for i.MX7D SoC MIPI-CSI2 receiver devices.
 
-config MXC_CAMERA_OV5640_MIPI
+config MXC_CAMERA_SUBDEV_OV5640_MIPI
 	tristate "OmniVision ov5640 camera support using mipi"
 	depends on MXC_MIPI_CSI && I2C
 	---help---
