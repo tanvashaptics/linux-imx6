@@ -392,9 +392,9 @@
 		pwn-gpios = <&gpio1 13 GPIO_ACTIVE_HIGH>;
 		rst-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
 		csi_id = <0>;
-		mclk = <12000000>;
+		mclk = <24576000>;
 		mclk_source = <0>;
-		pwms = <&pwm2 0 83>;
+		pwms = <&pwm2 0 40>;
 		port {
 			ov5640_mipi_ep: endpoint {
 				remote-endpoint = <&mipi_sensor_ep>;
@@ -885,6 +885,9 @@
 &pwm2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_pwm2>;
+	assigned-clocks = <&clks IMX7D_PWM2_ROOT_SRC>, <&clks IMX7D_PWM2_ROOT_CLK>;
+	assigned-clock-parents = <&clks IMX7D_PLL_AUDIO_POST_DIV>;
+	assigned-clock-rates = <0>, <49152000>;
 	status = "okay";
 };
 
