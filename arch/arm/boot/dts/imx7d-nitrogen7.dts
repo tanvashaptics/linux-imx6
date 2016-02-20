@@ -853,7 +853,6 @@
 };
 
 &mipi_csi {
-	clock-frequency = <12000000>;
 	status = "okay";
 	port {
 		mipi_sensor_ep: endpoint1 {
