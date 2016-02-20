@@ -151,7 +151,19 @@
 				  <&clks IMX7D_AUDIO_MCLK_ROOT_CLK>;
 		assigned-clock-parents = <&clks IMX7D_PLL_AUDIO_POST_DIV>;
 		assigned-clock-rates = <0>, <12288000>;
+	};
 
+	wl1271 {
+		compatible = "ti,wilink6";
+		interrupts-extended = <&gpio4 20 IRQ_TYPE_LEVEL_HIGH>;
+		clocks = <&refclock>;
+		clock-names = "refclock";
+
+		refclock: refclock {
+			compatible = "ti,wilink-clock";
+			#clock-cells = <0>;
+			clock-frequency = <38400000>;
+		};
 	};
 };
 
