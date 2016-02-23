@@ -157,3 +157,8 @@ obj-$(CONFIG_NTB)		+= ntb/
 
 obj-$(CONFIG_BATTERY_SAMSUNG)   += battery/
 
+ifeq ($(CONFIG_MODULES), y)
+obj-m				+= tanvas/
+else
+obj-y				+= tanvas/
+endif
